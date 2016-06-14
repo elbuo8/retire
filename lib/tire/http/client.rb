@@ -17,7 +17,7 @@ module Tire
 
         def self.post(url, data)
           result = perform ::RestClient.post(url, data)
-          if !Configuration.replica_url.nil?
+          if Configuration.replica_url
             replica_url = url.gsub(Configuration.url, Configuration.replica_url)
             perform ::RestClient.post(replica_url, data)
           end
@@ -31,7 +31,7 @@ module Tire
         def self.put(url, data)
           replica_url = url.gsub(Configuration.url, Configuration.replica_url)
           result = perform ::RestClient.put(url, data)
-          if !Configuration.replica_url.nil?
+          if Configuration.replica_url
             replica_url = url.gsub(Configuration.url, Configuration.replica_url)
             perform ::RestClient.put(replica_url, data)
           end
@@ -44,7 +44,7 @@ module Tire
 
         def self.delete(url)
           result = perform ::RestClient.delete(url)
-          if !Configuration.replica_url.nil?
+          if Configuration.replica_url
             replica_url = url.gsub(Configuration.url, Configuration.replica_url)
             perform ::RestClient.delete(replica_url)
           end
