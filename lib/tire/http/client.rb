@@ -16,7 +16,12 @@ module Tire
         end
 
         def self.post(url, data)
-          perform ::RestClient.post(url, data)
+          result = perform ::RestClient.post(url, data)
+          if !Configuration.replica_url.nil?
+            replica_url = url.gsub(Configuration.url, Configuration.replica_url)
+            perform ::RestClient.post(replica_url, data)
+          end
+          result
         rescue *ConnectionExceptions
           raise
         rescue ::RestClient::Exception => e
@@ -24,7 +29,13 @@ module Tire
         end
 
         def self.put(url, data)
-          perform ::RestClient.put(url, data)
+          replica_url = url.gsub(Configuration.url, Configuration.replica_url)
+          result = perform ::RestClient.put(url, data)
+          if !Configuration.replica_url.nil?
+            replica_url = url.gsub(Configuration.url, Configuration.replica_url)
+            perform ::RestClient.put(replica_url, data)
+          end
+          result
         rescue *ConnectionExceptions
           raise
         rescue ::RestClient::Exception => e
@@ -32,7 +43,12 @@ module Tire
         end
 
         def self.delete(url)
-          perform ::RestClient.delete(url)
+          result = perform ::RestClient.delete(url)
+          if !Configuration.replica_url.nil?
+            replica_url = url.gsub(Configuration.url, Configuration.replica_url)
+            perform ::RestClient.delete(replica_url)
+          end
+          result
         rescue *ConnectionExceptions
           raise
         rescue ::RestClient::Exception => e

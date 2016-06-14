@@ -1,6 +1,7 @@
 source "http://rubygems.org"
 
 gem "pry"
+gem "test-unit"
 
 # Specify your gem's dependencies in tire.gemspec
 gemspec
