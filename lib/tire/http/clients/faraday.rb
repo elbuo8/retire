@@ -96,7 +96,7 @@ module Tire
             if url.include? 'es.amazonaws.com'
               conn = ::Faraday.new do |faraday|
                 faraday.request :aws_signers_v4,
-                  credentials: Aws::Credentials.new(ENV.fetch('AWS_ACCESS_KEY_ID'), ENV.fetch('AWS_SECRET_ACCESS_KEY')),
+                  credentials: Aws::Credentials.new(ENV.fetch('ES_AWS_ACCESS_KEY_ID'), ENV.fetch('ES_AWS_SECRET_ACCESS_KEY')),
                   service_name: 'es',
                   region: ENV.fetch('AWS_REGION')
 
