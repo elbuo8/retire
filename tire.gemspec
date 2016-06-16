@@ -31,6 +31,9 @@ Gem::Specification.new do |s|
   s.add_dependency "multi_json",  "~> 1.3"
   s.add_dependency "activemodel", ">= 3.0"
   s.add_dependency "hashr",       "~> 0.0.19"
+  s.add_dependency "faraday",     "~> 0.9.2"
+  s.add_dependency "faraday_middleware",     "~> 0.10.0"
+  s.add_dependency "faraday_middleware-aws-signers-v4",     "~> 0.1.5"
   s.add_dependency "activesupport"
   s.add_dependency "ansi"
 
@@ -44,7 +47,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "active_model_serializers"
   s.add_development_dependency "mongoid",      "~> 2.2"
   s.add_development_dependency "redis-persistence"
-  s.add_development_dependency "faraday"
 
   unless defined?(JRUBY_VERSION)
     s.add_development_dependency "yajl-ruby",   "~> 1.0"
