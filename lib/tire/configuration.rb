@@ -5,13 +5,13 @@ module Tire
     def self.replica_url(value=nil)
       @replica_url = (value ? value.to_s.gsub(%r|/*$|, '') : nil) || @replica_url || ENV['ELASTICSEARCH_REPLICA_URL']
     end
-    
+
     def self.url(value=nil)
       @url = (value ? value.to_s.gsub(%r|/*$|, '') : nil) || @url || ENV['ELASTICSEARCH_URL'] || "http://localhost:9200"
     end
 
     def self.client(klass=nil)
-      @client = klass || @client || HTTP::Client::RestClient
+      @client = klass || @client || Tire::HTTP::Client::Faraday
     end
 
     def self.wrapper(klass=nil)
